@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>datatables css js</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+    <link href="assets/css/custom.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>dataTables</h1>
+      <div class="dataTables">
+        <div class="showTable">
+          <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+              <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>position</th>
+                <th>office</th>
+                <th>start_date</th>
+                <th>salary</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>first_name</th>
+                <th>last_name</th>
+                <th>position</th>
+                <th>office</th>
+                <th>start_date</th>
+                <th>salary</th>
+              </tr>
+            </tfoot>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div class="showtool">
+          <i class="glyphicon glyphicon-triangle-left"></i>
+          <span>Click Row for More Details</span>
+        </div>
+        <div class="showDetails">
+          <h1>Details</h1>
+        </div>
+      </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script>
+     $(document).ready(function(){
+      var table= $("#example").DataTable({
+         "processing":true,
+         "serverSide":true,
+         "ajax":{
+           "url":"post.php",
+           "type":"POST",
+         },
+         "columns":[
+           {"data":"first_name"},
+           {"data":"last_name"},
+           {"data":"position"},
+           {"data":"office"},
+           {"data":"start_date"},
+           {"data":"salary"}
+         ],
+       });
+       $("#example tbody").on('click','tr',function(){
+         $(this).siblings().removeClass('selected');
+         $(this).toggleClass('selected');
+         $(".showDetails").css({display:'block'});
+       });
+       $("#example tbody").on('mouseover','tr',function(){
+         var h = $(this).height();
+         var tables = $("#example tbody tr");
+         var index = tables.index($(this).closest("tr"));
+         var rowH = h * (index+2);
+         $(".showtool").css({display:'block',top:rowH+'px'});
+       });
+       $("#example tbody").on('mouseout','tr',function(){
+         $(".showtool").css("display","none");
+       });
+     });
+    </script>
+  </body>
+</html>

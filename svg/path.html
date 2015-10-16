@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>path路径</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<style>
+		.container{
+			width: 1120px;
+			height: auto;
+			margin: 0 auto;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="400" width="100%">
+			<!--用path画三角形-->
+			<path d="M0,100  L100,100  L50,0  Z"  stroke="red" stroke-width="3" fill="none"/>
+			<!--画一个半圆-->
+			<path d="M100,300   C100,200  400,400  400,300" stroke="red" stroke-width="4" fill="none"/>
+
+			<path d="M50,50  Q200,200  300,0 " stroke="red" stroke-width="4" fill="none"/>
+
+			<path d="M200,300  T400 ,250 " stroke="red" stroke-width="4" fill="none"/>
+		</svg>
+
+
+		<svg width="100%" height="600px">
+			<g>
+				<line x1="0" y1="300" x2="700" y2="300"  stroke="#1582dc" stroke-width="3" fill="red"/>
+				<path d="M750,300 L700,290 L700,310 Z"  stroke="#1582dc" stroke-width="3" fill="#1582dc"/>
+			</g>
+			<g>
+				<circle  cx="100" cy="300" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+			</g>
+			<g>
+				<circle  cx="650" cy="300" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+			</g>
+			<g>
+				<path d="M100,282  L190,150"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+				<line x1="190" y1="150" x2="490" y2="150"  stroke="#1582dc" stroke-width="3" fill="red"/>
+				<line x1="490" y1="150" x2="650" y2="280"  stroke="#1582dc" stroke-width="3" fill="red"/>
+				<path d="M100,320  L190,450"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+				<line x1="190" y1="450" x2="490" y2="450"  stroke="#1582dc" stroke-width="3" fill="red"/>
+				<line x1="490" y1="450" x2="650" y2="320"  stroke="#1582dc" stroke-width="3" fill="red"/>
+			</g>
+			<g>
+				<circle  cx="190" cy="160" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+				<circle  cx="190" cy="440" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+			</g>
+			<g>
+				<circle  cx="490" cy="160" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+				<circle  cx="490" cy="440" r="20"  stroke="#1582dc" stroke-width="3" fill="#fff"/>
+			</g>
+ 		</svg>
+	</div>
+</body>
+</html>

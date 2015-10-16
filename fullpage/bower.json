@@ -1,0 +1,19 @@
+{
+  "name": "fullpage",
+  "version": "0.1",
+  "authors": [
+    "henrylin2015 <lin_hailing@sina.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

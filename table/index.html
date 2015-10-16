@@ -1,0 +1,57 @@
+<!DOCTYPE>
+<html>
+    <head>
+	<meta charset="utf-8"/>
+	<meat name="viewport" content="width=device-width,initial-scale=1.0"/>
+	<title>datables jQuery实现当拉动滚动条到底部加载数据</title>
+	<style>
+	.container{
+		width:1120px;
+		height:1000px;
+		margin:0 auto;
+		border:1px solid red;
+	}
+	.tableLoad{
+		height:500px;
+		overflow-y:auto;
+		border:1px solid blue;
+	}
+	.table{
+		height:501px;
+	}
+	</style>
+    </head>
+    <body>
+	<div class="container">
+	    <div class="tableLoad">
+		<div class="table">
+		    <h1>我是table中的信息</h1>
+		</div>
+	    </div>
+	</div>
+	<script src="js/jquery-2.1.3.js"></script>
+	<script>
+	$(function(){
+		var totalHeight = 0; //定义一个总高度
+		var page = 1; //page number
+		function autoLoading(){
+			totalHeight = parseFloat($(".tableLoad").height()) + parseFloat($(".tableLoad").scrollTop());
+			if($(".tableLoad").height() <= totalHeight){
+				page ++;
+				if(page <= 4){
+					var oDiv="<div class='table'><h1>我是添加的div"+page+"</h1></div>";
+					$(".tableLoad").append(oDiv);
+				}
+			}
+			console.log(totalHeight);
+		}
+		$(".tableLoad").scroll(function(){
+			console.log("滚动条到顶部的垂直高度："+$(".tableLoad").scrollTop());
+			console.log("页面的文档高度："+$(".tableLoad").height());
+			//console.log("浏览器的高度："+$(window).height());
+			autoLoading();
+		});
+	});
+	</script>
+    </body>
+</html>

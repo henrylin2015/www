@@ -1,0 +1,40 @@
+.dataTables{
+    position:relative;
+    width:100%;
+}
+.showTable{
+    width:900px;
+}
+.showDetails{
+    position:absolute;
+    right:0;
+    top:70px;
+    width:238px;
+    height:440px;
+    border:1px solid #eee;
+    display:none;
+    z-index:100;
+    background-color:red;
+}
+.showtool{
+    height: 25px;
+    position:absolute;
+    left:920px;
+    top:70px;
+    width:200px;
+    background-color:#289fea;
+    display:none;
+    z-index:99;
+}
+.showtool > .sss{
+    width: 0;
+    height: 0;
+    border-top: 13px solid transparent;
+    border-right: 27px  solid   #289fea;
+    border-bottom: 13px solid transparent;
+}
+.showtool span{
+    margin-left:5px;
+    line-height:26px;
+    color:#fff;
+}

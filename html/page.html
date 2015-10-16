@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="css/app.min.css">
+</head>
+<body>
+	<div class="app ng-scope app-header-fixed app-aside-top">
+		<!-- header -->
+		<header id="header" ng-include=" 'views/header.html' "
+			class="app-header navbar bg-primary" role="menu">
+			<!-- navbar header -->
+			<div class="navbar-header navbar-header ng-scope box-shadow-inset dk">
+				<button class="pull-right visible-xs">
+					<i class="ti-settings"></i>
+				</button>
+				<button class="pull-right visible-xs">
+					<i class="ti-menu"></i>
+				</button>
+				<!-- brand -->
+				<a class="navbar-brand text-lt" bs-aside="aside"
+					data-template="views/partials/aside.tpl.html" data-placement="top"
+					data-animation="am-slide-top aside-open-backdrop"
+					data-container="body"> <i
+					class="pull-right ti-arrow-circle-down text-sm m-v-xs m-l-xs"></i>
+					<i class="glyphicon glyphicon-th-large text-md"></i> <img
+					src="images/logo.png" alt="." class="hide"> <span
+					class="hidden-folded m-l-xs">HeyMetro<sup
+						class="text-xs font-thin">1.2</sup></span>
+				</a>
+				<!-- / brand -->
+			</div>
+			<!-- / navbar header -->
+
+			<!-- navbar collapse -->
+			<div class="navbar-collapse hidden-xs ng-scope">
+				<!-- nav -->
+				<ul class="nav navbar-nav navbar-left">
+					<li><a ui-sref="app.dashboard"
+						translate="header.navbar.DASHBOARD" href="index.html"> Dashboard </a></li>
+					<li><a ui-sref="mail.inbox" translate="header.navbar.EMAIL" href="inbox.html">
+							Email </a></li>
+					<li><a ui-sref="ui.component.arrow"
+						translate="header.navbar.UIKITS" href="ui.html"> UI Kits </a></li>
+					<li><a ui-sref="page.profile" translate="header.navbar.PAGES" href="page.html">
+							Pages </a></li>
+				</ul>
+				<!-- / nav -->
+
+				<!-- nabar right -->
+				<ul class="nav navbar-nav navbar-right m-r-n">
+					<li><script type="text/ng-template" id="settings">
+              <div tabindex="-1" class="p dropdown-menu bg-white bg-inherit no-b-t no-margin w-sm" role="menu">                
+                <p class="clearfix">
+                  <a class="inline {{color}} p-xs m-h-xs m-v-xs pull-left no-borders" ng-repeat="color in options.headerColor" ng-click="setHeaderColor(color)">
+                  </a>
+                </p>
+                <div class="line b-b b-light m-h-xs"></div>
+                <p class="clearfix">
+                  <a class="inline {{color}} p-xs m-h-xs m-v-xs pull-left no-borders" ng-repeat="color in options.asideColor" ng-click="setAsideColor(color)">
+                  </a>
+                </p>
+                <div class="line b-b b-light m-h-xs"></div>                
+                <div class="m-v-xs">
+                  <label class="ui-checks m-h-xs no-margin">
+                    <input type="checkbox" ng-model="app.settings.headerFixed"><i></i> Header fixed
+                  </label>
+                </div>
+                <div class="m-v-xs">
+                  <label class="ui-checks m-h-xs no-margin">
+                    <input type="checkbox" ng-model="app.settings.headerShadow"><i></i> Header shadow
+                  </label>
+                </div>
+                <div class="m-v-xs">
+                  <label class="ui-checks m-h-xs no-margin">
+                    <input type="checkbox" ng-model="app.settings.asideTop"><i></i> Aside top
+                  </label>
+                </div>
+              </div>
+            </script> <a href bs-dropdown="dropdown" data-animation="am-collapse"
+						data-template="settings"> <i class="glyphicon glyphicon-cog"></i>
+							<span class="visible-xs-inline">Settings</span>
+					</a></li>
+					<li><a href bs-aside="aside"
+						data-template="views/partials/aside.tpl.chat.html"
+						data-placement="right"
+						data-animation="am-slide-right aside-open-inner modal-open"
+						data-container="body"> <i class="glyphicon glyphicon-comment"></i>
+							<b class="badge badge-xs bg-warning up">3</b> <span
+							class="visible-xs-inline">Notifications</span>
+					</a></li>
+					<li class="hidden-xs"><a href ui-fullscreen><i
+							class="glyphicon glyphicon-resize-vertical"></i></a></li>
+					<li><a href class="clear no-padding-h" bs-dropdown="dropdown"
+						data-animation="am-collapse" data-template="user"> <img
+							src="images/a0.jpg" alt="..." class="navbar-img pull-right">
+							<span class="hidden-sm m-l">David M.</span> <b
+							class="caret m-h-xs hidden-sm"></b>
+					</a> <script type="text/ng-template" id="user">
+              <ul class="dropdown-menu pull-right no-b-t">
+                <li>
+                  <a ui-sref="page.profile">Profile</a>
+                </li>
+                <li>
+                  <a ui-sref="page.settings">Settings</a>
+                </li>
+                <li class="divider">
+                <li>
+                  <a ui-sref="lockme">Lock me</a>
+                </li>
+                <li>
+                  <a ui-sref="signin">Logout</a>
+                </li>
+              </ul>
+            </script></li>
+				</ul>
+				<!-- / navbar right -->
+
+				<!-- search form -->
+				<form class="navbar-form navbar-form-sm navbar-right visible-xs"
+					role="search">
+					<div class="form-group">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button type="submit"
+									class="btn btn-sm no-bg btn-icon no-shadow no-padder">
+									<i class="ti-search"></i>
+								</button>
+							</span> <input type="text" ng-model="selected"
+								typeahead="state for state in states | filter:$viewValue | limitTo:8"
+								class="form-control input-sm no-bg no-border"
+								placeholder="Search...">
+						</div>
+					</div>
+				</form>
+				<!-- / search form -->
+			</div>
+			<!-- / navbar collapse -->
+		</header>
+		<!-- / header -->
+		<!-- aside -->
+		<aside id="aside" class="app-aside hidden-xs bg-dark lt">
+			<div class="app-aside-inner ng-scope affix-top" bs-affix
+				style="position: relative;">
+				<div class="app-aside-body scrollable hover ng-scope"
+					ui-view="aside@">
+					<nav ui-nav>
+						<ul class="nav">
+							<li class="nav-header h4 m-v-sm">UI Kits</li>
+							<li ng-class="{active:$state.includes('ui.component')}"><a>
+									<span class="pull-right text-muted"> <i
+										class="fa fa-caret-down"></i>
+								</span> <i class="icon glyphicon glyphicon-briefcase text-lt"></i> <span
+									class="font-normal">Components</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.arrow">Arrow</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.badge-label">Badge &amp; Label</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.button">Button</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.color">Color</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.component.grid">Grid</a>
+									</li>
+									<li ui-sref-active="active"><a ui-sref="ui.component.icon">Icon</a>
+									</li>
+									<li ui-sref-active="active"><a ui-sref="ui.component.list">List
+											Group</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.component.nav">Nav</a>
+									</li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.panel">Panel</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.progressbar">Progressbar</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.streamline">Streamline</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.component.timeline">Timeline</a></li>
+								</ul></li>
+							<li ng-class="{active:$state.includes('ui.angular-strap')}">
+								<a> <span class="pull-right text-muted"> <i
+										class="fa fa-caret-down"></i>
+								</span> <b class="badge bg-success pull-right">14</b> <i
+									class="icon glyphicon glyphicon-font text-lt"></i> <span
+									class="font-normal">Angular Strap</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.affix">Affix</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.alert">Alert</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.aside">Aside</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.button">Button</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.collapse">Collapse</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.dropdown">Dropdown</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.datepicker">Datepicker</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.timepicker">Timepicker</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.modal">Modal</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.select">Select</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.tab">Tab</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.tooltip">Tooltip</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.popover">Popover</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.angular-strap.typeahead">Typeahead</a></li>
+								</ul>
+							</li>
+							<li ng-class="{active:$state.includes('ui.form')}"><a> <span
+									class="pull-right text-muted"> <i
+										class="fa fa-caret-down"></i>
+								</span> <i class="icon glyphicon glyphicon-edit text-lt"></i> <span
+									class="font-normal">Form</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li ui-sref-active="active"><a ui-sref="ui.form.layout">Form
+											Layout</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.form.element">Form
+											Element</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.form.validation">Form Validation</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.form.select">Select</a>
+									</li>
+									<li ui-sref-active="active"><a ui-sref="ui.form.editor">Editor</a>
+									</li>
+									<li ui-sref-active="active"><a ui-sref="ui.form.slider">Slider</a>
+									</li>
+									<li ui-sref-active="active"><a ui-sref="ui.form.tree">Tree</a>
+									</li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.form.file-upload">File Upload</a></li>
+									<li ui-sref-active="active"><a
+										ui-sref="ui.form.image-crop">Image Crop</a></li>
+								</ul></li>
+							<li ng-class="{active:$state.includes('ui.table')}"><a>
+									<span class="pull-right text-muted"> <i
+										class="fa fa-caret-down"></i>
+								</span> <i class="icon glyphicon glyphicon-list text-lt"></i> <span
+									class="font-normal">Table</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li ui-sref-active="active"><a ui-sref="ui.table.static">Static
+											table</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.table.smart">Smart
+											table</a></li>
+								</ul></li>
+							<li ui-sref-active="active"><a ui-sref="ui.chart"> <b
+									class="label bg-primary pull-right">NEW</b> <i
+									class="icon glyphicon glyphicon-stats text-lt"></i> <span
+									class="font-normal">Charts</span>
+							</a></li>
+							<li ng-class="{active:$state.includes('ui.map')}"><a> <span
+									class="pull-right text-muted"> <i
+										class="fa fa-caret-down"></i>
+								</span> <i class="icon glyphicon glyphicon-map-marker text-lt"></i> <span
+									class="font-normal">Maps</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li ui-sref-active="active"><a ui-sref="ui.map.google">Google
+											Map</a></li>
+									<li ui-sref-active="active"><a ui-sref="ui.map.vector">Vector
+											Map</a></li>
+								</ul></li>
+							<li><a href> <span class="pull-right text-muted">
+										<i class="fa fa-caret-down"></i>
+								</span> <i class="icon glyphicon glyphicon-random text-lt"></i> <span>Nav
+										levels</span>
+							</a>
+								<ul class="nav nav-sub bg">
+									<li><a href>Nav levels 1</a></li>
+									<li><a href> <span class="pull-right text-muted">
+												<i class="fa fa-caret-down"></i>
+										</span> <span class="font-normal">Nav levels 2</span>
+									</a>
+										<ul class="nav nav-sub bg">
+											<li><a href>Nav levels 2.1</a></li>
+											<li><a href>Nav levels 2.2</a></li>
+										</ul></li>
+								</ul></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</aside>
+		<!-- / aside -->
+		<!-- content -->
+		<div id="content" class="app-content ng-scope" role="main" ui-view>
+			<div class="p-h-md p-v bg-white box-shadow pos-rlt">
+				<h3 class="no-margin">Profile</h3>
+			</div>
+			<div class="box">
+				<div class="col-md-3">
+					<div
+						style="background: url(images/a0.jpg) center center; background-size: cover">
+						<div class="p-lg bg-white-opacity text-center">
+							<a href class="w-xs inline"> <img src="images/a0.jpg"
+								class="img-circle img-responsive">
+							</a>
+							<div class="m-b m-t-sm h2">
+								<span class="text-black">David M.</span>
+							</div>
+							<a href class="btn btn-sm btn-info m-b p-h">Follow</a>
+							<p>I am designing something.</p>
+						</div>
+					</div>
+					<div class="text-center b-b b-light">
+						<a href class="m-b-md inline m text-color"> <span
+							class="h3 block font-bold">221</span> <em class="text-xs">Followers</em>
+						</a> <a href class="m-b-md inline m text-color"> <span
+							class="h3 block font-bold">250</span> <em class="text-xs">Following</em>
+						</a>
+					</div>
+					<div class="p">
+						<p>About</p>
+						<p>Lorem ipsum dolor sit amet, consecteter adipiscing elit,
+							sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
+						<div class="m-v">
+							<a class="text-muted"> <i class="fa ui-icon fa-facebook"></i>
+							</a> <a class="text-muted"> <i class="fa ui-icon fa-twitter"></i>
+							</a> <a class="text-muted"> <i class="fa ui-icon fa-linkedin"></i>
+							</a>
+						</div>
+					</div>
+					<div class="list-group no-radius no-border">
+						<a class="list-group-item"> <span class="pull-right badge">12</span>
+							Messages
+						</a> <a class="list-group-item"> <span class="pull-right badge">23</span>
+							Photos
+						</a> <a class="list-group-item"> <span class="pull-right badge">564</span>
+							Posts
+						</a>
+					</div>
+				</div>
+				<div class="col-md-9 bg-white b-l bg-auto">
+					<div class="p bg-light">
+						<div class="panel no-border no-margin">
+							<form>
+								<textarea class="form-control no-border" rows="3"
+									placeholder="Write something..."></textarea>
+							</form>
+							<div class="lt p">
+								<button class="btn btn-info pull-right btn-sm p-h font-bold">Post</button>
+								<ul class="nav nav-pills nav-sm">
+									<li><a href><i class="fa fa-camera"></i></a></li>
+									<li><a href><i class="fa fa-video-camera"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="p-h bg-white b-b b-light">
+						<ul class="nav nav-lines nav-md b-info">
+							<li class="active"><a href>Stream</a></li>
+							<li><a href>Photos <span class="badge">3</span></a></li>
+							<li><a href>Posts <span class="badge">9</span></a></li>
+						</ul>
+					</div>
+					<div class="p-h-lg">
+						<div class="streamline b-l p-v m-l-xs m-b">
+							<div>
+								<a class="pull-left w-thumb-sm m-l-n m-t-xs m-r"> <img
+									src="images/a2.jpg" class="img-responsive rounded" alt="...">
+								</a>
+								<div class="clear">
+									<div class="m-b-xs">
+										<a href>James</a> said <span class="text-muted block text-xs">
+											Just now </span>
+									</div>
+									<div class="m-b">
+										<div>Lorem ipsum dolor sit amet, consecteter adipiscing
+											elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
+											ullamcorper sodales nisi nec adipiscing elit. Morbi id neque
+											quam. Aliquam sollicitudin</div>
+										<div class="m-t-sm">
+											<a href class="text-muted m-xs">Like</a> <a href
+												class="text-muted m-xs">Comment</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<a class="pull-left w-thumb-sm m-l-n m-t-xs m-r"> <img
+									src="images/a3.jpg" class="img-responsive rounded" alt="...">
+								</a>
+								<div class="clear">
+									<div class="m-b-xs">
+										<a href>Oscar</a> upload a file <span
+											class="text-muted block text-xs"> 3 minutes ago </span>
+									</div>
+									<div class="m-b">
+										<div class="w-xl w-auto-xs">
+											<div class="box bg-light">
+												<div class="box-col w-xs text-center dk p-md v-m">
+													<i class="fa fa-file-text-o text-3x text-muted-lt"></i>
+												</div>
+												<div class="box-col p">
+													<a href>Geuismod tincidunt</a>
+													<div>Diam nonummy nibh euismod tincidunt ut laoreet.
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="m-t-sm">
+											<a href class="text-muted m-xs">Like</a> <a href
+												class="text-muted m-xs">Comment</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<a class="pull-left w-thumb-sm m-l-n m-t-xs m-r"> <img
+									src="images/a4.jpg" class="img-responsive rounded" alt="...">
+								</a>
+								<div class="clear">
+									<div class="m-b-xs">
+										<a href>Anny</a> post a photo <span
+											class="text-muted block text-xs"> 6 minutes ago </span>
+									</div>
+									<div class="m-b">
+										<div>
+											<img src="images/a10.jpg" class="b p-xs">
+										</div>
+										<div class="m-t-sm">
+											<a href class="text-muted m-xs">Like</a> <a href
+												class="text-muted m-xs">Comment</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div>
+								<a class="pull-left w-thumb-sm m-l-n m-t-xs m-r"> <img
+									src="images/a5.jpg" class="img-responsive rounded" alt="...">
+								</a>
+								<div class="clear">
+									<div class="m-b-xs">
+										<a href>Michel</a> post a comment <span
+											class="text-muted block text-xs"> 10 minutes ago </span>
+									</div>
+									<div class="m-b bg-light">
+										<div class="p-sm b-b">
+											<img src="images/a4.jpg"
+												class="rounded w-thumb-xs pull-left m-r-sm" alt="...">
+											<a href>Tony</a> liked it
+										</div>
+										<div class="p-sm">
+											<img src="images/a6.jpg"
+												class="rounded w-thumb-xs pull-left m-r-sm" alt="...">
+											<a href>Anney</a> Commented it
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- / content -->
+		<!-- footer -->
+		<footer id="footer" class="app-footer" role="footer">
+			<div class="p bg-white text-xs">
+				<div class="pull-right hidden-xs hidden-sm text-muted">
+					<strong>HeyMetro</strong> - Built with AngularJS &amp;Bootstrap &copy; Copyright 2014
+				</div>
+				<ul class="list-inline no-margin text-center-xs">
+					<li><a bs-dropdown="dropdown" data-placement="top-left"
+						data-animation="am-flip-x" data-template="lang">English</a>
+					</li>
+					<li class="text-muted">-</li>
+					<li><a ui-sref="page.document">Documents</a></li>
+					<li class="text-muted">-</li>
+					<li><a href="javascript:;" target="_blank">Purchase</a></li>
+				</ul>
+			</div>
+		</footer>
+		<!-- / footer -->
+	</div>
+	<div
+		class="aside bg-dark box-shadow-lg ng-scope top am-slide-top aside-open-backdrop"
+		role="menu" style="display: none;">
+		<div class="p-lg" ng-click="$hide()">
+			<a ui-sref="mail.inbox" class="p-lg bg-info item inline m-xs"
+				href="#/mail/inbox"> <i
+				class="icon glyphicon glyphicon-envelope text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">Email</span>
+			</a> <a ui-sref="ui.component.arrow"
+				class="p-lg bg-primary item inline m-xs" href="#/ui/component/arrow">
+				<i class="icon glyphicon glyphicon-briefcase text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">UI Kits</span>
+			</a> <a ui-sref="page.blank" class="p-lg bg-success item inline m-xs"
+				href="#/page/blank"> <i
+				class="icon glyphicon glyphicon-file text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">Pages</span>
+			</a> <a ui-sref="ui.map.google" class="p-lg bg-warning item inline m-xs"
+				href="#/ui/map/google"> <i
+				class="icon glyphicon glyphicon-map-marker text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">Map</span>
+			</a> <a ui-sref="ui.form.file-upload"
+				class="p-lg bg-danger item inline m-xs" href="#/ui/form/file-upload">
+				<i class="icon glyphicon glyphicon-cloud text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">Drive</span>
+			</a> <a ui-sref="ui.map.vector" class="p-lg bg-inverse item inline m-xs"
+				href="#/ui/map/vector"> <i
+				class="icon glyphicon glyphicon-usd text-2x"></i> <span
+				class="p-xs p-h-sm bottom text-xs hidden-xs">Market</span>
+			</a>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
